@@ -147,7 +147,7 @@ public class FrmCadastro extends JFrame {
 		
 		// Define o modelo da tabela
 		DefaultTableModel modeloTabela = new DefaultTableModel();
-		String[] nomesColunas = {"ID", "NOME", "E-MAIL"};
+		String[] nomesColunas = {"ID", "NOME"};
 		modeloTabela.setColumnIdentifiers(nomesColunas);
 		
 		// Recupera os dados e poe na array para mostrar na tabela
@@ -157,19 +157,17 @@ public class FrmCadastro extends JFrame {
 		clientes = clienteDAO.getClientes();
 		
 		// Cria cada linha que ira compor a tabela
-		Object[] linha = new Object[3];
+		Object[] linha = new Object[2];
 		for(Cliente cliente : clientes){
 			linha[0] = cliente.getId();
 			linha[1] = cliente.getNome();
-			linha[2] = cliente.getEmail();
 			modeloTabela.addRow(linha);
 		}
 		
 		tabelaClientes.setModel(modeloTabela);
 		
 		tabelaClientes.getColumnModel().getColumn(0).setPreferredWidth(31);
-		tabelaClientes.getColumnModel().getColumn(1).setPreferredWidth(143);
-		tabelaClientes.getColumnModel().getColumn(2).setPreferredWidth(151);
+		tabelaClientes.getColumnModel().getColumn(1).setPreferredWidth(300);
 		scrollTabela.setViewportView(tabelaClientes);
 	}
 	

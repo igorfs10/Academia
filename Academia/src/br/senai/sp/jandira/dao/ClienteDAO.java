@@ -21,8 +21,8 @@ public class ClienteDAO {
 	public void gravar () {
 		
 		String sql = "INSERT INTO clientes "
-				+ "(nome, dtNasc, email, endereco, telefone, celular, sexo) "
-				+ "VALUES (?, ?, ?, ?, ?, ?, ?)";
+				+ "(nome, dtNasc, peso, altura, sexo, niveldeatividade) "
+				+ "VALUES (?, ?, ?, ?, ?, ?)";
 		
 		stm = null;
 		
@@ -30,11 +30,10 @@ public class ClienteDAO {
 			stm = Conexao.abrirConexao().prepareStatement(sql);
 			stm.setString(1, cliente.getNome());
 			stm.setString(2, cliente.getDtNasc());
-			stm.setString(3, cliente.getEmail());
-			stm.setString(4, cliente.getEndereco());
-			stm.setString(5, cliente.getTelefone());
-			stm.setString(6, cliente.getCelular());
-			stm.setString(7, cliente.getSexo());
+			stm.setInt(3, cliente.getPeso());
+			stm.setDouble(4, cliente.getAltura());
+			stm.setString(5, cliente.getSexo());
+			stm.setString(6, cliente.getNivelAtividade());
 			stm.execute();
 			
 			JOptionPane.showMessageDialog(null, "Cliente gravado com sucesso",
@@ -50,7 +49,7 @@ public class ClienteDAO {
 	public void atualizar(){
 
 		String sql = "UPDATE clientes set"
-				+ " nome = ?, dtnasc = ?, email = ?, endereco = ?, telefone = ?, celular = ?, sexo = ?"
+				+ " nome = ?, dtnasc = ?, peso = ?, altura = ?, sexo = ?, niveldeatividade = ?"
 				+ " WHERE id = ?";
 		
 		stm = null;
@@ -59,12 +58,11 @@ public class ClienteDAO {
 			stm = Conexao.abrirConexao().prepareStatement(sql);
 			stm.setString(1, cliente.getNome());
 			stm.setString(2, cliente.getDtNasc());
-			stm.setString(3, cliente.getEmail());
-			stm.setString(4, cliente.getEndereco());
-			stm.setString(5, cliente.getTelefone());
-			stm.setString(6, cliente.getCelular());
-			stm.setString(7, cliente.getSexo());
-			stm.setInt(8, cliente.getId());
+			stm.setInt(3, cliente.getPeso());
+			stm.setDouble(4, cliente.getAltura());
+			stm.setString(5, cliente.getSexo());
+			stm.setString(6, cliente.getNivelAtividade());
+			stm.setInt(7, cliente.getId());
 			stm.execute();
 			
 			JOptionPane.showMessageDialog(null, "Cliente atualizado com sucesso",
@@ -115,12 +113,11 @@ public class ClienteDAO {
 			rs.next();
 			cliente.setId(rs.getInt("id"));
 			cliente.setNome(rs.getString("nome"));
-			cliente.setEmail(rs.getString("email"));
-			cliente.setTelefone(rs.getString("telefone"));
-			cliente.setCelular(rs.getString("celular"));
 			cliente.setDtNasc(df.format(rs.getDate("dtNasc")));
+			cliente.setPeso(rs.getInt("peso"));
+			cliente.setAltura(rs.getDouble("altura"));
 			cliente.setSexo(rs.getString("sexo"));
-			cliente.setEndereco(rs.getString("endereco"));
+			cliente.setNivelAtividade(rs.getString("niveldeatividade"));
 			
 			Conexao.abrirConexao().close();
 			
@@ -151,12 +148,11 @@ public class ClienteDAO {
 				cliente = new Cliente();
 				cliente.setId(rs.getInt("id"));
 				cliente.setNome(rs.getString("nome"));
-				cliente.setEmail(rs.getString("email"));
-				cliente.setTelefone(rs.getString("telefone"));
-				cliente.setCelular(rs.getString("celular"));
 				cliente.setDtNasc(rs.getString("dtNasc"));
+				cliente.setPeso(rs.getInt("peso"));
+				cliente.setAltura(rs.getDouble("altura"));
 				cliente.setSexo(rs.getString("sexo"));
-				cliente.setEndereco(rs.getString("endereco"));
+				cliente.setNivelAtividade(rs.getString("niveldeatividade"));
 				clientes.add(cliente);
 			}
 			

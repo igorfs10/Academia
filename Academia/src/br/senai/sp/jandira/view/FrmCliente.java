@@ -28,58 +28,63 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.awt.event.ActionEvent;
 import javax.swing.JFormattedTextField;
+import javax.swing.JRadioButton;
 
 public class FrmCliente extends JFrame {
 
 	private JPanel painelPrincipal;
 	private JTextField txtId;
 	private JTextField txtNome;
-	private JTextField txtEmail;
-	private JTextField txtTelefone;
-	private JTextField txtCelular;
+	private JTextField txtPeso;
+	private JTextField txtAltura;
 	private JFormattedTextField txtDtNasc;
-	//private JTextField txtDtNasc;
-	private JTextArea txtEndereco;
-	private JComboBox<?> cbSexo;
-	private JScrollPane scrollPane = new JScrollPane();
+	private JComboBox cbNivelAtividade;
 	
-	public void setTxtId(String txtId){
-		this.txtId.setText(txtId);
+	public JTextField getTxtId() {
+		return txtId;
 	}
-	
-	public void setTxtNome(String txtNome){
-		this.txtNome.setText(txtNome);
+
+	public void setTxtId(JTextField txtId) {
+		this.txtId = txtId;
 	}
-	
-	public void setTxtEmail(String txtEmail){
-		this.txtEmail.setText(txtEmail);
+
+	public JTextField getTxtNome() {
+		return txtNome;
 	}
-	
-	public void setTxtTelefone(String txtTelefone){
-		this.txtTelefone.setText(txtTelefone);
+
+	public void setTxtNome(JTextField txtNome) {
+		this.txtNome = txtNome;
 	}
-	
-	public void setTxtCelular(String txtCelular){
-		this.txtCelular.setText(txtCelular);
+
+	public JTextField getTxtPeso() {
+		return txtPeso;
 	}
-	
-	public void setTxtDtNasc(String txtDtNasc){
-		this.txtDtNasc.setText(txtDtNasc);
+
+	public void setTxtPeso(JTextField txtPeso) {
+		this.txtPeso = txtPeso;
 	}
-	
-	public void setTxtEndereco(String txtEndereco){
-		this.txtEndereco.setText(txtEndereco);
+
+	public JTextField getTxtAltura() {
+		return txtAltura;
 	}
-	
-	public void setCbSexo(String cbSexo){
-		this.cbSexo.setSelectedItem(cbSexo);
+
+	public void setTxtAltura(JTextField txtAltura) {
+		this.txtAltura = txtAltura;
+	}
+
+	public JFormattedTextField getTxtDtNasc() {
+		return txtDtNasc;
+	}
+
+	public void setTxtDtNasc(JFormattedTextField txtDtNasc) {
+		this.txtDtNasc = txtDtNasc;
 	}
 
 	public FrmCliente(String operacao) {
 		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FrmCliente.class.getResource("/br/senai/sp/jandira/imagens/editar32.png")));
 		setTitle("Dados do Contato");
-		setBounds(100, 100, 378, 478);
+		setBounds(100, 100, 310, 478);
 		painelPrincipal = new JPanel();
 		painelPrincipal.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(painelPrincipal);
@@ -88,24 +93,24 @@ public class FrmCliente extends JFrame {
 		JPanel painelTitulo = new JPanel();
 		painelTitulo.setLayout(null);
 		painelTitulo.setBackground(Color.WHITE);
-		painelTitulo.setBounds(0, 0, 374, 66);
+		painelTitulo.setBounds(0, 0, 304, 66);
 		painelPrincipal.add(painelTitulo);
 		
-		JLabel lblTitulo = new JLabel("Contato");
+		JLabel lblTitulo = new JLabel("Cliente");
 		lblTitulo.setIcon(new ImageIcon(FrmCliente.class.getResource("/br/senai/sp/jandira/imagens/editar32.png")));
 		lblTitulo.setFont(new Font("Arial", Font.BOLD, 28));
-		lblTitulo.setBounds(10, 11, 176, 44);
+		lblTitulo.setBounds(10, 11, 148, 44);
 		painelTitulo.add(lblTitulo);
 		
 		JLabel lblOperacao = new JLabel(operacao);
 		lblOperacao.setForeground(Color.BLUE);
 		lblOperacao.setFont(new Font("Arial", Font.PLAIN, 20));
-		lblOperacao.setBounds(271, 24, 93, 24);
+		lblOperacao.setBounds(187, 24, 93, 24);
 		painelTitulo.add(lblOperacao);
 		
 		JPanel painelConteudo = new JPanel();
 		painelConteudo.setBorder(new TitledBorder(null, "Dados:", TitledBorder.LEADING, TitledBorder.TOP, null, Color.BLUE));
-		painelConteudo.setBounds(10, 64, 354, 287);
+		painelConteudo.setBounds(10, 64, 291, 287);
 		painelPrincipal.add(painelConteudo);
 		painelConteudo.setLayout(null);
 		
@@ -115,7 +120,7 @@ public class FrmCliente extends JFrame {
 		
 		txtId = new JTextField();
 		txtId.setEditable(false);
-		txtId.setBounds(129, 22, 46, 20);
+		txtId.setBounds(58, 22, 46, 20);
 		painelConteudo.add(txtId);
 		txtId.setColumns(10);
 		
@@ -124,61 +129,39 @@ public class FrmCliente extends JFrame {
 		painelConteudo.add(lblNome);
 		
 		txtNome = new JTextField();
-		txtNome.setBounds(129, 55, 215, 20);
+		txtNome.setBounds(58, 53, 215, 20);
 		painelConteudo.add(txtNome);
 		txtNome.setColumns(10);
 		
-		JLabel lblEmail = new JLabel("E-mail:");
-		lblEmail.setBounds(10, 120, 38, 14);
-		painelConteudo.add(lblEmail);
+		JLabel lblPeso = new JLabel("Peso:");
+		lblPeso.setBounds(10, 114, 38, 14);
+		painelConteudo.add(lblPeso);
 		
-		txtEmail = new JTextField();
-		txtEmail.setBounds(129, 117, 215, 20);
-		painelConteudo.add(txtEmail);
-		txtEmail.setColumns(10);
+		txtPeso = new JTextField();
+		txtPeso.setBounds(58, 114, 46, 20);
+		painelConteudo.add(txtPeso);
+		txtPeso.setColumns(10);
 		
-		JLabel lblTelefone = new JLabel("Telefone:");
-		lblTelefone.setBounds(10, 147, 57, 14);
-		painelConteudo.add(lblTelefone);
+		JLabel lblAltura = new JLabel("Altura:");
+		lblAltura.setBounds(129, 114, 46, 14);
+		painelConteudo.add(lblAltura);
 		
-		txtTelefone = new JTextField();
-		txtTelefone.setBounds(129, 144, 215, 20);
-		painelConteudo.add(txtTelefone);
-		txtTelefone.setColumns(10);
+		txtAltura = new JTextField();
+		txtAltura.setBounds(185, 114, 46, 20);
+		painelConteudo.add(txtAltura);
+		txtAltura.setColumns(10);
 		
-		JLabel lblCelular = new JLabel("Celular:");
-		lblCelular.setBounds(10, 178, 46, 14);
-		painelConteudo.add(lblCelular);
-		
-		txtCelular = new JTextField();
-		txtCelular.setBounds(129, 175, 215, 20);
-		painelConteudo.add(txtCelular);
-		txtCelular.setColumns(10);
-		
-		JLabel lblEndereo = new JLabel("Endere\u00E7o:");
-		lblEndereo.setBounds(10, 237, 73, 14);
-		painelConteudo.add(lblEndereo);
+		JLabel lblNivelAtividade = new JLabel("Nivel De Atividade:");
+		lblNivelAtividade.setBounds(10, 145, 104, 14);
+		painelConteudo.add(lblNivelAtividade);
 		
 		JLabel lblDataDeNascimento = new JLabel("Data de nascimento:");
-		lblDataDeNascimento.setBounds(10, 212, 115, 14);
+		lblDataDeNascimento.setBounds(10, 89, 115, 14);
 		painelConteudo.add(lblDataDeNascimento);
 		
-		scrollPane.setBounds(129, 231, 215, 45);
-		painelConteudo.add(scrollPane);
-		
-		txtEndereco = new JTextArea();
-		scrollPane.setViewportView(txtEndereco);
-		txtEndereco.setLineWrap(true);
-		txtEndereco.setWrapStyleWord(true);
-		
 		JLabel lblSexo = new JLabel("Sexo:");
-		lblSexo.setBounds(10, 89, 38, 14);
+		lblSexo.setBounds(129, 25, 38, 14);
 		painelConteudo.add(lblSexo);
-		
-		cbSexo = new JComboBox();
-		cbSexo.setModel(new DefaultComboBoxModel(new String[] {"M", "F"}));
-		cbSexo.setBounds(129, 86, 38, 20);
-		painelConteudo.add(cbSexo);
 		
 		// *** Definir máscara da data ***
 		MaskFormatter dateMask = null;
@@ -191,11 +174,48 @@ public class FrmCliente extends JFrame {
 		}
 		
 		txtDtNasc = new JFormattedTextField(dateMask);
-		txtDtNasc.setBounds(129, 206, 215, 20);
+		txtDtNasc.setBounds(129, 86, 55, 20);
 		painelConteudo.add(txtDtNasc);
 		
+		JLabel lblImc = new JLabel("IMC:");
+		lblImc.setBounds(10, 170, 46, 14);
+		painelConteudo.add(lblImc);
+		
+		JLabel lblFcm = new JLabel("FCM:");
+		lblFcm.setBounds(10, 237, 46, 14);
+		painelConteudo.add(lblFcm);
+		
+		JLabel lblTmb = new JLabel("TMB:");
+		lblTmb.setBounds(10, 262, 46, 14);
+		painelConteudo.add(lblTmb);
+		
+		cbNivelAtividade = new JComboBox();
+		cbNivelAtividade.setModel(new DefaultComboBoxModel(new String[] {"Sedent\u00E1rio", "Levemente Ativo", "Moderadamente Ativo", "Bastante Ativo", "Muito Ativo"}));
+		cbNivelAtividade.setBounds(123, 142, 150, 20);
+		painelConteudo.add(cbNivelAtividade);
+		
+		JTextArea txtValorImc = new JTextArea();
+		txtValorImc.setBounds(58, 170, 215, 60);
+		painelConteudo.add(txtValorImc);
+		
+		JLabel lblValorFcm = new JLabel("...");
+		lblValorFcm.setBounds(58, 237, 46, 14);
+		painelConteudo.add(lblValorFcm);
+		
+		JLabel lblValorTbm = new JLabel("...");
+		lblValorTbm.setBounds(58, 262, 46, 14);
+		painelConteudo.add(lblValorTbm);
+		
+		JRadioButton rdbtnM = new JRadioButton("M");
+		rdbtnM.setBounds(164, 21, 51, 23);
+		painelConteudo.add(rdbtnM);
+		
+		JRadioButton rdbtnF = new JRadioButton("F");
+		rdbtnF.setBounds(217, 21, 46, 23);
+		painelConteudo.add(rdbtnF);
+		
 		JPanel painelBotoes = new JPanel();
-		painelBotoes.setBounds(10, 362, 354, 66);
+		painelBotoes.setBounds(10, 362, 291, 66);
 		painelPrincipal.add(painelBotoes);
 		painelBotoes.setLayout(null);
 		
@@ -219,9 +239,9 @@ public class FrmCliente extends JFrame {
 				
 				Cliente cliente = new Cliente();
 				cliente.setNome(txtNome.getText());
-				cliente.setEmail(txtEmail.getText());
+				cliente.setEmail(txtPeso.getText());
 				cliente.setSexo(cbSexo.getSelectedItem().toString());
-				cliente.setTelefone(txtTelefone.getText());
+				cliente.setTelefone(txtAltura.getText());
 				cliente.setCelular(txtCelular.getText());
 				cliente.setDtNasc(dateBanco);
 				cliente.setEndereco(txtEndereco.getText());
@@ -265,14 +285,14 @@ public class FrmCliente extends JFrame {
 		});
 		btnSair.setIcon(new ImageIcon(FrmCliente.class.getResource("/br/senai/sp/jandira/imagens/sair32.png")));
 		btnSair.setToolTipText("Sair");
-		btnSair.setBounds(300, 11, 44, 44);
+		btnSair.setBounds(226, 11, 44, 44);
 		painelBotoes.add(btnSair);
 	}
 	
 	private void limparControles(){
 		txtNome.setText("");
-		txtEmail.setText("");
-		txtTelefone.setText("");
+		txtPeso.setText("");
+		txtAltura.setText("");
 		txtCelular.setText("");
 		txtDtNasc.setText("");
 		txtEndereco.setText("");

@@ -5,13 +5,13 @@ public class Cliente {
 	private int id;
 	private String nome;
 	private String dtNasc;
-	private String endereco;
-	private String telefone;
-	private String celular;
-	private String email;
+	private int peso;
+	private double altura;
 	private String sexo;
-	
-	
+	private String nivelAtividade;
+	private double imc;
+	private double fcm;
+	private double tbm;
 	
 	public int getId() {
 		return id;
@@ -31,29 +31,17 @@ public class Cliente {
 	public void setDtNasc(String dtNasc) {
 		this.dtNasc = dtNasc;
 	}
-	public String getEndereco() {
-		return endereco;
+	public int getPeso() {
+		return peso;
 	}
-	public void setEndereco(String endereco) {
-		this.endereco = endereco;
+	public void setPeso(int peso) {
+		this.peso = peso;
 	}
-	public String getTelefone() {
-		return telefone;
+	public double getAltura() {
+		return altura;
 	}
-	public void setTelefone(String telefone) {
-		this.telefone = telefone;
-	}
-	public String getCelular() {
-		return celular;
-	}
-	public void setCelular(String celular) {
-		this.celular = celular;
-	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
+	public void setAltura(double altura) {
+		this.altura = altura;
 	}
 	public String getSexo() {
 		return sexo;
@@ -61,5 +49,28 @@ public class Cliente {
 	public void setSexo(String sexo) {
 		this.sexo = sexo;
 	}
-	
+	public String getNivelAtividade() {
+		return nivelAtividade;
+	}
+	public void setNivelAtividade(String nivelAtividade) {
+		this.nivelAtividade = nivelAtividade;
+	}
+	public double getImc() {
+		return imc;
+	}
+	public void setImc(double imc) {
+		this.imc = imc;
+	}
+	public double getFcm() {
+		return fcm;
+	}
+	public void setFcm(double fcm) {
+		this.fcm = fcm;
+	}
+	public double getTbm() {
+		return tbm;
+	}
+	public void setTbm(double tbm) {
+		this.tbm = tbm;
+	}
 }
