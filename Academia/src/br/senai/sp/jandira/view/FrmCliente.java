@@ -21,6 +21,7 @@ import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import java.awt.Toolkit;
 import javax.swing.JComboBox;
+import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
@@ -81,6 +82,8 @@ public class FrmCliente extends JFrame {
 	}
 
 	public FrmCliente(String operacao) {
+		ButtonGroup btngSexo = new ButtonGroup();
+		
 		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FrmCliente.class.getResource("/br/senai/sp/jandira/imagens/editar32.png")));
 		setTitle("Dados do Contato");
@@ -134,20 +137,20 @@ public class FrmCliente extends JFrame {
 		txtNome.setColumns(10);
 		
 		JLabel lblPeso = new JLabel("Peso:");
-		lblPeso.setBounds(10, 114, 38, 14);
+		lblPeso.setBounds(10, 117, 38, 14);
 		painelConteudo.add(lblPeso);
 		
 		txtPeso = new JTextField();
-		txtPeso.setBounds(58, 114, 46, 20);
+		txtPeso.setBounds(58, 114, 41, 20);
 		painelConteudo.add(txtPeso);
 		txtPeso.setColumns(10);
 		
 		JLabel lblAltura = new JLabel("Altura:");
-		lblAltura.setBounds(129, 114, 46, 14);
+		lblAltura.setBounds(145, 117, 46, 14);
 		painelConteudo.add(lblAltura);
 		
 		txtAltura = new JTextField();
-		txtAltura.setBounds(185, 114, 46, 20);
+		txtAltura.setBounds(187, 114, 46, 20);
 		painelConteudo.add(txtAltura);
 		txtAltura.setColumns(10);
 		
@@ -195,6 +198,7 @@ public class FrmCliente extends JFrame {
 		painelConteudo.add(cbNivelAtividade);
 		
 		JTextArea txtValorImc = new JTextArea();
+		txtValorImc.setEditable(false);
 		txtValorImc.setBounds(58, 170, 215, 60);
 		painelConteudo.add(txtValorImc);
 		
@@ -208,11 +212,26 @@ public class FrmCliente extends JFrame {
 		
 		JRadioButton rdbtnM = new JRadioButton("M");
 		rdbtnM.setBounds(164, 21, 51, 23);
+		rdbtnM.setActionCommand("M");
 		painelConteudo.add(rdbtnM);
+		btngSexo.add(rdbtnM);
+		rdbtnM.setSelected(true);
 		
 		JRadioButton rdbtnF = new JRadioButton("F");
 		rdbtnF.setBounds(217, 21, 46, 23);
+		rdbtnF.setActionCommand("F");
 		painelConteudo.add(rdbtnF);
+		btngSexo.add(rdbtnF);
+		
+		JLabel lblKg = new JLabel("Kg");
+		lblKg.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblKg.setBounds(109, 117, 26, 14);
+		painelConteudo.add(lblKg);
+		
+		JLabel lblCm = new JLabel("cm");
+		lblCm.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblCm.setBounds(245, 117, 26, 14);
+		painelConteudo.add(lblCm);
 		
 		JPanel painelBotoes = new JPanel();
 		painelBotoes.setBounds(10, 362, 291, 66);
@@ -239,12 +258,11 @@ public class FrmCliente extends JFrame {
 				
 				Cliente cliente = new Cliente();
 				cliente.setNome(txtNome.getText());
-				cliente.setEmail(txtPeso.getText());
-				cliente.setSexo(cbSexo.getSelectedItem().toString());
-				cliente.setTelefone(txtAltura.getText());
-				cliente.setCelular(txtCelular.getText());
 				cliente.setDtNasc(dateBanco);
-				cliente.setEndereco(txtEndereco.getText());
+				cliente.setPeso(Integer.parseInt(txtPeso.getText()));
+				cliente.setAltura(Integer.parseInt(txtAltura.getText()));
+				cliente.setSexo(btngSexo.getSelection().getActionCommand());
+				cliente.setNivelAtividade(cbNivelAtividade.getSelectedItem().toString());
 				
 				ClienteDAO clienteDao = new ClienteDAO();
 				clienteDao.setCliente(cliente);

@@ -6,7 +6,7 @@ public class Cliente {
 	private String nome;
 	private String dtNasc;
 	private int peso;
-	private double altura;
+	private int altura;
 	private String sexo;
 	private String nivelAtividade;
 	private double imc;
@@ -37,10 +37,10 @@ public class Cliente {
 	public void setPeso(int peso) {
 		this.peso = peso;
 	}
-	public double getAltura() {
+	public int getAltura() {
 		return altura;
 	}
-	public void setAltura(double altura) {
+	public void setAltura(int altura) {
 		this.altura = altura;
 	}
 	public String getSexo() {
