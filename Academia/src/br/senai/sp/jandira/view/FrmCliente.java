@@ -39,46 +39,55 @@ public class FrmCliente extends JFrame {
 	private JTextField txtPeso;
 	private JTextField txtAltura;
 	private JFormattedTextField txtDtNasc;
-	private JComboBox cbNivelAtividade;
+	private JComboBox<?> cbNivelAtividade;
+	private JRadioButton rdbtnM;
+	private JRadioButton rdbtnF;
+	private JTextArea txtImc;
+	private JTextField txtFcm;
+	private JTextField txtTmb;
 	
-	public JTextField getTxtId() {
-		return txtId;
+	public void setTxtId(String txtId) {
+		this.txtId.setText(txtId);
 	}
 
-	public void setTxtId(JTextField txtId) {
-		this.txtId = txtId;
+	public void setTxtNome(String txtNome) {
+		this.txtNome.setText(txtNome);
 	}
 
-	public JTextField getTxtNome() {
-		return txtNome;
+	public void setTxtPeso(String txtPeso) {
+		this.txtPeso.setText(txtPeso);
 	}
 
-	public void setTxtNome(JTextField txtNome) {
-		this.txtNome = txtNome;
+	public void setTxtAltura(String txtAltura) {
+		this.txtAltura.setText(txtAltura);
 	}
 
-	public JTextField getTxtPeso() {
-		return txtPeso;
+	public void setTxtDtNasc(String txtDtNasc) {
+		this.txtDtNasc .setText(txtDtNasc);
 	}
-
-	public void setTxtPeso(JTextField txtPeso) {
-		this.txtPeso = txtPeso;
+	
+	public void setCbNivelAtividade(String CbNivelAtividade){
+		this.cbNivelAtividade.setSelectedItem(CbNivelAtividade);
 	}
-
-	public JTextField getTxtAltura() {
-		return txtAltura;
+	
+	public void setRdbtnM(){
+		this.rdbtnM.setSelected(true);
 	}
-
-	public void setTxtAltura(JTextField txtAltura) {
-		this.txtAltura = txtAltura;
+	
+	public void setRdbtnF(){
+		this.rdbtnF.setSelected(true);
 	}
-
-	public JFormattedTextField getTxtDtNasc() {
-		return txtDtNasc;
+	
+	public void setTxtImc(String txtImc){
+		this.txtImc.setText(txtImc);
 	}
-
-	public void setTxtDtNasc(JFormattedTextField txtDtNasc) {
-		this.txtDtNasc = txtDtNasc;
+	
+	public void setTxtFcm(String txtFcm){
+		this.txtFcm.setText(txtFcm);
+	}
+	
+	public void setTxtTmb(String txtTmb){
+		this.txtTmb.setText(txtTmb);
 	}
 
 	public FrmCliente(String operacao) {
@@ -159,7 +168,7 @@ public class FrmCliente extends JFrame {
 		painelConteudo.add(lblNivelAtividade);
 		
 		JLabel lblDataDeNascimento = new JLabel("Data de nascimento:");
-		lblDataDeNascimento.setBounds(10, 89, 115, 14);
+		lblDataDeNascimento.setBounds(10, 89, 144, 14);
 		painelConteudo.add(lblDataDeNascimento);
 		
 		JLabel lblSexo = new JLabel("Sexo:");
@@ -177,7 +186,7 @@ public class FrmCliente extends JFrame {
 		}
 		
 		txtDtNasc = new JFormattedTextField(dateMask);
-		txtDtNasc.setBounds(129, 86, 55, 20);
+		txtDtNasc.setBounds(184, 86, 89, 20);
 		painelConteudo.add(txtDtNasc);
 		
 		JLabel lblImc = new JLabel("IMC:");
@@ -197,27 +206,19 @@ public class FrmCliente extends JFrame {
 		cbNivelAtividade.setBounds(123, 142, 150, 20);
 		painelConteudo.add(cbNivelAtividade);
 		
-		JTextArea txtValorImc = new JTextArea();
-		txtValorImc.setEditable(false);
-		txtValorImc.setBounds(58, 170, 215, 60);
-		painelConteudo.add(txtValorImc);
+		txtImc = new JTextArea();
+		txtImc.setEditable(false);
+		txtImc.setBounds(58, 170, 215, 60);
+		painelConteudo.add(txtImc);
 		
-		JLabel lblValorFcm = new JLabel("...");
-		lblValorFcm.setBounds(58, 237, 46, 14);
-		painelConteudo.add(lblValorFcm);
-		
-		JLabel lblValorTbm = new JLabel("...");
-		lblValorTbm.setBounds(58, 262, 46, 14);
-		painelConteudo.add(lblValorTbm);
-		
-		JRadioButton rdbtnM = new JRadioButton("M");
+		rdbtnM = new JRadioButton("M");
 		rdbtnM.setBounds(164, 21, 51, 23);
 		rdbtnM.setActionCommand("M");
 		painelConteudo.add(rdbtnM);
 		btngSexo.add(rdbtnM);
 		rdbtnM.setSelected(true);
 		
-		JRadioButton rdbtnF = new JRadioButton("F");
+		rdbtnF = new JRadioButton("F");
 		rdbtnF.setBounds(217, 21, 46, 23);
 		rdbtnF.setActionCommand("F");
 		painelConteudo.add(rdbtnF);
@@ -232,6 +233,18 @@ public class FrmCliente extends JFrame {
 		lblCm.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblCm.setBounds(245, 117, 26, 14);
 		painelConteudo.add(lblCm);
+		
+		txtFcm = new JTextField();
+		txtFcm.setEditable(false);
+		txtFcm.setBounds(58, 234, 86, 20);
+		painelConteudo.add(txtFcm);
+		txtFcm.setColumns(10);
+		
+		txtTmb = new JTextField();
+		txtTmb.setEditable(false);
+		txtTmb.setBounds(58, 259, 86, 20);
+		painelConteudo.add(txtTmb);
+		txtTmb.setColumns(10);
 		
 		JPanel painelBotoes = new JPanel();
 		painelBotoes.setBounds(10, 362, 291, 66);

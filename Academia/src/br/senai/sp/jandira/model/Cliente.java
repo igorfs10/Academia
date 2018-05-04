@@ -1,5 +1,9 @@
 package br.senai.sp.jandira.model;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Cliente {
 	
 	private int id;
@@ -11,7 +15,7 @@ public class Cliente {
 	private String nivelAtividade;
 	private double imc;
 	private double fcm;
-	private double tbm;
+	private double tmb;
 	
 	public int getId() {
 		return id;
@@ -59,7 +63,7 @@ public class Cliente {
 		return imc;
 	}
 	public void setImc(double imc) {
-		this.imc = imc;
+		this.imc = (peso / ((altura / 100) * (altura / 100)));
 	}
 	public double getFcm() {
 		return fcm;
@@ -67,10 +71,39 @@ public class Cliente {
 	public void setFcm(double fcm) {
 		this.fcm = fcm;
 	}
-	public double getTbm() {
-		return tbm;
+	public double getTmb() {
+		return tmb;
 	}
-	public void setTbm(double tbm) {
-		this.tbm = tbm;
+	public void setTmb() {
+		long idade = 0;
+		Date dataAtual = new Date();
+		SimpleDateFormat toDate = new SimpleDateFormat("dd/MM/yyyy");
+		
+		Date usuarioDate = null;
+		
+		try {
+			usuarioDate = toDate.parse(dtNasc);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		idade = dataAtual.getTime() - usuarioDate.getTime() / 1000 / 60 / 60 / 24 / 365;
+		System.out.println(idade);
+		if(sexo == "M"){
+			tmb = 66 + (13.7 * peso) + (5 * altura) - (6.8 * idade);
+		}else{
+			tmb = 665 + (9.6 * peso) + (1.8 * altura) - (4.7 * idade);
+		}
+		if(nivelAtividade=="Sedentário"){
+			this.tmb = tmb * 1.20;
+		}else if(nivelAtividade=="Levemente ativo"){
+			this.tmb = tmb * 1.37;
+		}else if(nivelAtividade=="Moderadamente ativo"){
+			this.tmb = tmb * 1.55;
+		}else if(nivelAtividade=="Bastante ativo"){
+			this.tmb = tmb * 1.72;
+		}else{
+			this.tmb = tmb * 1.90;
+		}
 	}
 }

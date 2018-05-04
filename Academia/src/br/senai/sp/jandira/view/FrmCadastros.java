@@ -26,16 +26,16 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.awt.event.ActionEvent;
 
-public class FrmCadastro extends JFrame {
+public class FrmCadastros extends JFrame {
 
 	private JPanel painelPrincipal;
 	private JTable tabelaClientes;
 	private JScrollPane scrollTabela;
 	private JPanel painelTabela;
 
-	public FrmCadastro() {
+	public FrmCadastros() {
 		setResizable(false);
-		setIconImage(Toolkit.getDefaultToolkit().getImage(FrmCadastro.class.getResource("/br/senai/sp/jandira/imagens/agenda32.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(FrmCadastros.class.getResource("/br/senai/sp/jandira/imagens/agenda32.png")));
 		setTitle("Clientes");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 438, 390);
@@ -51,7 +51,7 @@ public class FrmCadastro extends JFrame {
 		painelTitulo.setLayout(null);
 		
 		JLabel lblTituloTela = new JLabel("Agenda");
-		lblTituloTela.setIcon(new ImageIcon(FrmCadastro.class.getResource("/br/senai/sp/jandira/imagens/agenda32.png")));
+		lblTituloTela.setIcon(new ImageIcon(FrmCadastros.class.getResource("/br/senai/sp/jandira/imagens/agenda32.png")));
 		lblTituloTela.setFont(new Font("Arial", Font.BOLD, 28));
 		lblTituloTela.setBounds(10, 11, 414, 44);
 		painelTitulo.add(lblTituloTela);
@@ -87,7 +87,7 @@ public class FrmCadastro extends JFrame {
 		});
 		
 		btnNovo.setToolTipText("Adicionar cliente");
-		btnNovo.setIcon(new ImageIcon(FrmCadastro.class.getResource("/br/senai/sp/jandira/imagens/novo32.png")));
+		btnNovo.setIcon(new ImageIcon(FrmCadastros.class.getResource("/br/senai/sp/jandira/imagens/novo32.png")));
 		btnNovo.setBounds(10, 11, 44, 44);
 		painelBotoes.add(btnNovo);
 		
@@ -102,7 +102,7 @@ public class FrmCadastro extends JFrame {
 		});
 		
 		btnEditar.setToolTipText("Editar cliente");
-		btnEditar.setIcon(new ImageIcon(FrmCadastro.class.getResource("/br/senai/sp/jandira/imagens/editar32.png")));
+		btnEditar.setIcon(new ImageIcon(FrmCadastros.class.getResource("/br/senai/sp/jandira/imagens/editar32.png")));
 		btnEditar.setBounds(64, 11, 44, 44);
 		painelBotoes.add(btnEditar);
 		
@@ -117,7 +117,7 @@ public class FrmCadastro extends JFrame {
 		});
 		
 		btnExcluir.setToolTipText("Excluir cliente");
-		btnExcluir.setIcon(new ImageIcon(FrmCadastro.class.getResource("/br/senai/sp/jandira/imagens/excluir32.png")));
+		btnExcluir.setIcon(new ImageIcon(FrmCadastros.class.getResource("/br/senai/sp/jandira/imagens/excluir32.png")));
 		btnExcluir.setBounds(118, 11, 44, 44);
 		painelBotoes.add(btnExcluir);
 		
@@ -128,7 +128,7 @@ public class FrmCadastro extends JFrame {
 			}
 		});
 		btnSair.setToolTipText("Sair");
-		btnSair.setIcon(new ImageIcon(FrmCadastro.class.getResource("/br/senai/sp/jandira/imagens/sair32.png")));
+		btnSair.setIcon(new ImageIcon(FrmCadastros.class.getResource("/br/senai/sp/jandira/imagens/sair32.png")));
 		btnSair.setBounds(360, 11, 44, 44);
 		painelBotoes.add(btnSair);
 		
@@ -187,12 +187,16 @@ public class FrmCadastro extends JFrame {
 			FrmCliente frmCliente = new FrmCliente(operacao);
 			frmCliente.setTxtId(String.valueOf(cliente.getId()));
 			frmCliente.setTxtNome(cliente.getNome());
-			frmCliente.setTxtEmail(cliente.getEmail());
-			frmCliente.setTxtTelefone(cliente.getTelefone());
-			frmCliente.setTxtCelular(cliente.getCelular());
 			frmCliente.setTxtDtNasc(cliente.getDtNasc());
-			frmCliente.setTxtEndereco(cliente.getEndereco());
-			frmCliente.setCbSexo(cliente.getSexo());
+			frmCliente.setTxtPeso(String.valueOf(cliente.getPeso()));
+			frmCliente.setTxtAltura(String.valueOf(cliente.getAltura()));
+			if (cliente.getSexo().equals("M")) {
+				frmCliente.setRdbtnM();
+			} else {
+				frmCliente.setRdbtnF();
+			}
+			frmCliente.setCbNivelAtividade(cliente.getNivelAtividade());;
+			cliente.setTmb();
 			
 			frmCliente.setVisible(true);
 			

@@ -1,12 +1,12 @@
 package br.senai.sp.jandira.app;
 
-import br.senai.sp.jandira.view.FrmCadastro;
+import br.senai.sp.jandira.view.FrmCadastros;
 
 public class Cadastros {
 
 	public static void main(String[] args) {
-		FrmCadastro agenda = new FrmCadastro();
-		agenda.setVisible(true);
+		FrmCadastros cadastros = new FrmCadastros();
+		cadastros.setVisible(true);
 	}
 
 }
