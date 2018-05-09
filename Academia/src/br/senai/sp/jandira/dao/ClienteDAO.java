@@ -30,8 +30,8 @@ public class ClienteDAO {
 			stm = Conexao.abrirConexao().prepareStatement(sql);
 			stm.setString(1, cliente.getNome());
 			stm.setString(2, cliente.getDtNasc());
-			stm.setInt(3, cliente.getPeso());
-			stm.setInt(4, cliente.getAltura());
+			stm.setDouble(3, cliente.getPeso());
+			stm.setDouble(4, cliente.getAltura());
 			stm.setString(5, cliente.getSexo());
 			stm.setString(6, cliente.getNivelAtividade());
 			stm.execute();
@@ -58,8 +58,8 @@ public class ClienteDAO {
 			stm = Conexao.abrirConexao().prepareStatement(sql);
 			stm.setString(1, cliente.getNome());
 			stm.setString(2, cliente.getDtNasc());
-			stm.setInt(3, cliente.getPeso());
-			stm.setInt(4, cliente.getAltura());
+			stm.setDouble(3, cliente.getPeso());
+			stm.setDouble(4, cliente.getAltura());
 			stm.setString(5, cliente.getSexo());
 			stm.setString(6, cliente.getNivelAtividade());
 			stm.setInt(7, cliente.getId());
@@ -114,8 +114,8 @@ public class ClienteDAO {
 			cliente.setId(rs.getInt("id"));
 			cliente.setNome(rs.getString("nome"));
 			cliente.setDtNasc(df.format(rs.getDate("dtNasc")));
-			cliente.setPeso(rs.getInt("peso"));
-			cliente.setAltura(rs.getInt("altura"));
+			cliente.setPeso(rs.getDouble("peso"));
+			cliente.setAltura(rs.getDouble("altura"));
 			cliente.setSexo(rs.getString("sexo"));
 			cliente.setNivelAtividade(rs.getString("niveldeatividade"));
 			
@@ -149,8 +149,8 @@ public class ClienteDAO {
 				cliente.setId(rs.getInt("id"));
 				cliente.setNome(rs.getString("nome"));
 				cliente.setDtNasc(rs.getString("dtNasc"));
-				cliente.setPeso(rs.getInt("peso"));
-				cliente.setAltura(rs.getInt("altura"));
+				cliente.setPeso(rs.getDouble("peso"));
+				cliente.setAltura(rs.getDouble("altura"));
 				cliente.setSexo(rs.getString("sexo"));
 				cliente.setNivelAtividade(rs.getString("niveldeatividade"));
 				clientes.add(cliente);

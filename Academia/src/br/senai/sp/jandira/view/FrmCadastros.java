@@ -21,6 +21,7 @@ import javax.swing.UIManager;
 import javax.swing.JButton;
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -32,6 +33,8 @@ public class FrmCadastros extends JFrame {
 	private JTable tabelaClientes;
 	private JScrollPane scrollTabela;
 	private JPanel painelTabela;
+	private DecimalFormat semCasa = new DecimalFormat("#");
+	private DecimalFormat umaCasa = new DecimalFormat("#.#");
 
 	public FrmCadastros() {
 		setResizable(false);
@@ -146,7 +149,14 @@ public class FrmCadastros extends JFrame {
 		tabelaClientes = new JTable();
 		
 		// Define o modelo da tabela
-		DefaultTableModel modeloTabela = new DefaultTableModel();
+		DefaultTableModel modeloTabela = new DefaultTableModel()
+		{ 
+		      @Override
+		      public boolean isCellEditable(int row, int col) 
+		      { 
+		             return false; 
+		      } 
+		};
 		String[] nomesColunas = {"ID", "NOME"};
 		modeloTabela.setColumnIdentifiers(nomesColunas);
 		
@@ -166,6 +176,7 @@ public class FrmCadastros extends JFrame {
 		
 		tabelaClientes.setModel(modeloTabela);
 		
+		tabelaClientes.getTableHeader().setReorderingAllowed(false);;
 		tabelaClientes.getColumnModel().getColumn(0).setPreferredWidth(31);
 		tabelaClientes.getColumnModel().getColumn(1).setPreferredWidth(300);
 		scrollTabela.setViewportView(tabelaClientes);
@@ -188,15 +199,23 @@ public class FrmCadastros extends JFrame {
 			frmCliente.setTxtId(String.valueOf(cliente.getId()));
 			frmCliente.setTxtNome(cliente.getNome());
 			frmCliente.setTxtDtNasc(cliente.getDtNasc());
-			frmCliente.setTxtPeso(String.valueOf(cliente.getPeso()));
-			frmCliente.setTxtAltura(String.valueOf(cliente.getAltura()));
+			frmCliente.setTxtPeso(semCasa.format(cliente.getPeso()));
+			frmCliente.setTxtAltura(semCasa.format(cliente.getAltura()));
+			
 			if (cliente.getSexo().equals("M")) {
 				frmCliente.setRdbtnM();
 			} else {
 				frmCliente.setRdbtnF();
 			}
-			frmCliente.setCbNivelAtividade(cliente.getNivelAtividade());;
+			
+			frmCliente.setCbNivelAtividade(cliente.getNivelAtividade());
+			
+			cliente.setImc();
+			cliente.setImcDados();
+			frmCliente.setTxtImc(umaCasa.format(cliente.getImc()) + cliente.getImcDados());
+			
 			cliente.setTmb();
+			frmCliente.setTxtTmb(semCasa.format(cliente.getTmb()));
 			
 			frmCliente.setVisible(true);
 			

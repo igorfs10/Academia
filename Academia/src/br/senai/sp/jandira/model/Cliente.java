@@ -9,11 +9,12 @@ public class Cliente {
 	private int id;
 	private String nome;
 	private String dtNasc;
-	private int peso;
-	private int altura;
+	private double peso;
+	private double altura;
 	private String sexo;
 	private String nivelAtividade;
 	private double imc;
+	private String imcDados;
 	private double fcm;
 	private double tmb;
 	
@@ -35,16 +36,16 @@ public class Cliente {
 	public void setDtNasc(String dtNasc) {
 		this.dtNasc = dtNasc;
 	}
-	public int getPeso() {
+	public double getPeso() {
 		return peso;
 	}
-	public void setPeso(int peso) {
+	public void setPeso(double peso) {
 		this.peso = peso;
 	}
-	public int getAltura() {
+	public double getAltura() {
 		return altura;
 	}
-	public void setAltura(int altura) {
+	public void setAltura(double altura) {
 		this.altura = altura;
 	}
 	public String getSexo() {
@@ -62,14 +63,58 @@ public class Cliente {
 	public double getImc() {
 		return imc;
 	}
-	public void setImc(double imc) {
-		this.imc = (peso / ((altura / 100) * (altura / 100)));
+	public void setImc() {
+		this.imc = peso / ((altura / 100) * (altura / 100));
+	}
+	public String getImcDados() {
+		return imcDados;
+	}
+	public void setImcDados() {
+		if (imc < 17) {
+			this.imcDados =		"\nMuito abaixo do peso"
+								+ "\nQueda de cabelo, infertilidade, ausência menstrual.";
+		} else if (imc < 18.5) {
+			this.imcDados =		"\nAbaixo do peso"
+								+ "\nFadiga, stress, ansiedade.";
+		} else if (imc < 25) {
+			this.imcDados =	"\nPeso Normal"
+								+ "\nMenor risco de doenças cardíacas e vasculares.";
+		} else if (imc < 30) {
+			this.imcDados =		"\nAcima do peso"
+								+ "\nFadiga, má circulação, varizes.";
+		} else if (imc < 35) {
+			this.imcDados = 	 "\nObesidade Grau I"
+								+ "\nDiabetes, angina, infarto, aterosclerose";
+		} else if (imc < 40) {
+			this.imcDados = 	"\nObesidade Grau II"
+								+ "\nApneia do sono, falta de ar.";
+		} else {
+			this.imcDados = 	"\nObesidade Grau III"
+								+ "\nRefluxo, dificuldade para se mover, escaras, diabetes, infarto, AVC.";
+		}
 	}
 	public double getFcm() {
 		return fcm;
 	}
-	public void setFcm(double fcm) {
-		this.fcm = fcm;
+	public void setFcm() {
+		long idade = 0;
+		Date dataAtual = new Date();
+		SimpleDateFormat toDate = new SimpleDateFormat("dd/MM/yyyy");
+		
+		Date usuarioDate = null;
+		
+		try {
+			usuarioDate = toDate.parse(dtNasc);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		idade = (dataAtual.getTime() - usuarioDate.getTime()) / 1000 / 60 / 60 / 24 / 365;
+		if(sexo.equals("M")){
+			this.fcm = ((210 - (0.5 * idade)) - 0.1 * peso) + 4;
+		}else{
+			this.fcm = (210 - (0.5 * idade)) - 0.1 * peso;
+		}
 	}
 	public double getTmb() {
 		return tmb;
@@ -87,9 +132,8 @@ public class Cliente {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		idade = dataAtual.getTime() - usuarioDate.getTime() / 1000 / 60 / 60 / 24 / 365;
-		System.out.println(idade);
-		if(sexo == "M"){
+		idade = (dataAtual.getTime() - usuarioDate.getTime()) / 1000 / 60 / 60 / 24 / 365;
+		if(sexo.equals("M")){
 			tmb = 66 + (13.7 * peso) + (5 * altura) - (6.8 * idade);
 		}else{
 			tmb = 665 + (9.6 * peso) + (1.8 * altura) - (4.7 * idade);

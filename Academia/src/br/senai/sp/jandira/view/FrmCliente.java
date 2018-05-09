@@ -96,7 +96,7 @@ public class FrmCliente extends JFrame {
 		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FrmCliente.class.getResource("/br/senai/sp/jandira/imagens/editar32.png")));
 		setTitle("Dados do Contato");
-		setBounds(100, 100, 310, 478);
+		setBounds(100, 100, 318, 478);
 		painelPrincipal = new JPanel();
 		painelPrincipal.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(painelPrincipal);
@@ -105,7 +105,7 @@ public class FrmCliente extends JFrame {
 		JPanel painelTitulo = new JPanel();
 		painelTitulo.setLayout(null);
 		painelTitulo.setBackground(Color.WHITE);
-		painelTitulo.setBounds(0, 0, 304, 66);
+		painelTitulo.setBounds(0, 0, 312, 66);
 		painelPrincipal.add(painelTitulo);
 		
 		JLabel lblTitulo = new JLabel("Cliente");
@@ -122,7 +122,7 @@ public class FrmCliente extends JFrame {
 		
 		JPanel painelConteudo = new JPanel();
 		painelConteudo.setBorder(new TitledBorder(null, "Dados:", TitledBorder.LEADING, TitledBorder.TOP, null, Color.BLUE));
-		painelConteudo.setBounds(10, 64, 291, 287);
+		painelConteudo.setBounds(10, 64, 294, 304);
 		painelPrincipal.add(painelConteudo);
 		painelConteudo.setLayout(null);
 		
@@ -194,11 +194,11 @@ public class FrmCliente extends JFrame {
 		painelConteudo.add(lblImc);
 		
 		JLabel lblFcm = new JLabel("FCM:");
-		lblFcm.setBounds(10, 237, 46, 14);
+		lblFcm.setBounds(10, 254, 46, 14);
 		painelConteudo.add(lblFcm);
 		
 		JLabel lblTmb = new JLabel("TMB:");
-		lblTmb.setBounds(10, 262, 46, 14);
+		lblTmb.setBounds(10, 279, 46, 14);
 		painelConteudo.add(lblTmb);
 		
 		cbNivelAtividade = new JComboBox();
@@ -207,8 +207,10 @@ public class FrmCliente extends JFrame {
 		painelConteudo.add(cbNivelAtividade);
 		
 		txtImc = new JTextArea();
+		txtImc.setLineWrap(true);
+		txtImc.setWrapStyleWord(true);
 		txtImc.setEditable(false);
-		txtImc.setBounds(58, 170, 215, 60);
+		txtImc.setBounds(58, 170, 215, 73);
 		painelConteudo.add(txtImc);
 		
 		rdbtnM = new JRadioButton("M");
@@ -236,18 +238,18 @@ public class FrmCliente extends JFrame {
 		
 		txtFcm = new JTextField();
 		txtFcm.setEditable(false);
-		txtFcm.setBounds(58, 234, 86, 20);
+		txtFcm.setBounds(58, 251, 86, 20);
 		painelConteudo.add(txtFcm);
 		txtFcm.setColumns(10);
 		
 		txtTmb = new JTextField();
 		txtTmb.setEditable(false);
-		txtTmb.setBounds(58, 259, 86, 20);
+		txtTmb.setBounds(58, 276, 86, 20);
 		painelConteudo.add(txtTmb);
 		txtTmb.setColumns(10);
 		
 		JPanel painelBotoes = new JPanel();
-		painelBotoes.setBounds(10, 362, 291, 66);
+		painelBotoes.setBounds(13, 372, 291, 66);
 		painelPrincipal.add(painelBotoes);
 		painelBotoes.setLayout(null);
 		
@@ -282,7 +284,6 @@ public class FrmCliente extends JFrame {
 				
 				if(lblOperacao.getText().equals("NOVO")){
 					clienteDao.gravar();
-					limparControles();
 				} else if (lblOperacao.getText().equals("EDITAR")) {
 					cliente.setId(Integer.parseInt(txtId.getText()));
 					clienteDao.atualizar();
@@ -318,16 +319,5 @@ public class FrmCliente extends JFrame {
 		btnSair.setToolTipText("Sair");
 		btnSair.setBounds(226, 11, 44, 44);
 		painelBotoes.add(btnSair);
-	}
-	
-	private void limparControles(){
-		txtNome.setText("");
-		txtPeso.setText("");
-		txtAltura.setText("");
-		txtCelular.setText("");
-		txtDtNasc.setText("");
-		txtEndereco.setText("");
-		txtNome.requestFocus();
-		
 	}
 }
