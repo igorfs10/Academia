@@ -274,8 +274,8 @@ public class FrmCliente extends JFrame {
 				Cliente cliente = new Cliente();
 				cliente.setNome(txtNome.getText());
 				cliente.setDtNasc(dateBanco);
-				cliente.setPeso(Integer.parseInt(txtPeso.getText()));
-				cliente.setAltura(Integer.parseInt(txtAltura.getText()));
+				cliente.setPeso(Double.parseDouble(txtPeso.getText()));
+				cliente.setAltura(Double.parseDouble(txtAltura.getText()));
 				cliente.setSexo(btngSexo.getSelection().getActionCommand());
 				cliente.setNivelAtividade(cbNivelAtividade.getSelectedItem().toString());
 				
