@@ -77,7 +77,7 @@ public class Cliente {
 			this.imcDados =		"\nAbaixo do peso"
 								+ "\nFadiga, stress, ansiedade.";
 		} else if (imc < 25) {
-			this.imcDados =	"\nPeso Normal"
+			this.imcDados =		"\nPeso Normal"
 								+ "\nMenor risco de doenças cardíacas e vasculares.";
 		} else if (imc < 30) {
 			this.imcDados =		"\nAcima do peso"
@@ -97,19 +97,7 @@ public class Cliente {
 		return fcm;
 	}
 	public void setFcm() {
-		long idade = 0;
-		Date dataAtual = new Date();
-		SimpleDateFormat toDate = new SimpleDateFormat("dd/MM/yyyy");
-		
-		Date usuarioDate = null;
-		
-		try {
-			usuarioDate = toDate.parse(dtNasc);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		idade = (dataAtual.getTime() - usuarioDate.getTime()) / 1000 / 60 / 60 / 24 / 365;
+		long idade = getIdade();
 		if(sexo.equals("M")){
 			this.fcm = ((210 - (0.5 * idade)) - 0.1 * peso) + 4;
 		}else{
@@ -120,6 +108,26 @@ public class Cliente {
 		return tmb;
 	}
 	public void setTmb() {
+		long idade = getIdade();
+		if(sexo.equals("M")){
+			tmb = 66 + (13.7 * peso) + (5 * altura) - (6.8 * idade);
+		}else{
+			tmb = 665 + (9.6 * peso) + (1.8 * altura) - (4.7 * idade);
+		}
+		if(nivelAtividade.equals("Sedentário")){
+			this.tmb = tmb * 1.20;
+		}else if(nivelAtividade.equals("Levemente ativo")){
+			this.tmb = tmb * 1.37;
+		}else if(nivelAtividade.equals("Moderadamente ativo")){
+			this.tmb = tmb * 1.55;
+		}else if(nivelAtividade.equals("Bastante ativo")){
+			this.tmb = tmb * 1.72;
+		}else{
+			this.tmb = tmb * 1.90;
+		}
+	}
+	
+	public long getIdade(){
 		long idade = 0;
 		Date dataAtual = new Date();
 		SimpleDateFormat toDate = new SimpleDateFormat("dd/MM/yyyy");
@@ -133,21 +141,7 @@ public class Cliente {
 			e.printStackTrace();
 		}
 		idade = (dataAtual.getTime() - usuarioDate.getTime()) / 1000 / 60 / 60 / 24 / 365;
-		if(sexo.equals("M")){
-			tmb = 66 + (13.7 * peso) + (5 * altura) - (6.8 * idade);
-		}else{
-			tmb = 665 + (9.6 * peso) + (1.8 * altura) - (4.7 * idade);
-		}
-		if(nivelAtividade=="Sedentário"){
-			this.tmb = tmb * 1.20;
-		}else if(nivelAtividade=="Levemente ativo"){
-			this.tmb = tmb * 1.37;
-		}else if(nivelAtividade=="Moderadamente ativo"){
-			this.tmb = tmb * 1.55;
-		}else if(nivelAtividade=="Bastante ativo"){
-			this.tmb = tmb * 1.72;
-		}else{
-			this.tmb = tmb * 1.90;
-		}
+		
+		return idade;
 	}
 }

@@ -24,6 +24,7 @@ import javax.swing.JComboBox;
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -45,6 +46,7 @@ public class FrmCliente extends JFrame {
 	private JTextArea txtImc;
 	private JTextField txtFcm;
 	private JTextField txtTmb;
+	private Cliente cliente;
 	
 	public void setTxtId(String txtId) {
 		this.txtId.setText(txtId);
@@ -63,7 +65,7 @@ public class FrmCliente extends JFrame {
 	}
 
 	public void setTxtDtNasc(String txtDtNasc) {
-		this.txtDtNasc .setText(txtDtNasc);
+		this.txtDtNasc.setText(txtDtNasc);
 	}
 	
 	public void setCbNivelAtividade(String CbNivelAtividade){
@@ -257,23 +259,10 @@ public class FrmCliente extends JFrame {
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				SimpleDateFormat toDate = new SimpleDateFormat("dd/MM/yyyy");
-				SimpleDateFormat toDataBase = new SimpleDateFormat("yyyy-MM-dd 00:00:00.000000");
 				
-				Date usuarioDate = null;
-				String dateBanco = null;
-				
-				try {
-					usuarioDate = toDate.parse((txtDtNasc.getText()));
-					dateBanco = toDataBase.format(usuarioDate);
-				} catch (ParseException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				
-				Cliente cliente = new Cliente();
+				cliente = new Cliente();
 				cliente.setNome(txtNome.getText());
-				cliente.setDtNasc(dateBanco);
+				cliente.setDtNasc(txtDtNasc.getText());
 				cliente.setPeso(Double.parseDouble(txtPeso.getText()));
 				cliente.setAltura(Double.parseDouble(txtAltura.getText()));
 				cliente.setSexo(btngSexo.getSelection().getActionCommand());
@@ -283,9 +272,12 @@ public class FrmCliente extends JFrame {
 				clienteDao.setCliente(cliente);
 				
 				if(lblOperacao.getText().equals("NOVO")){
+					calcularDados();
 					clienteDao.gravar();
+					dispose();
 				} else if (lblOperacao.getText().equals("EDITAR")) {
 					cliente.setId(Integer.parseInt(txtId.getText()));
+					calcularDados();
 					clienteDao.atualizar();
 					dispose();
 				} else if (lblOperacao.getText().equals("EXCLUIR")) {
@@ -294,6 +286,7 @@ public class FrmCliente extends JFrame {
 							+ cliente.getNome()
 							+ " ?" , "Atenção", JOptionPane.YES_NO_OPTION);
 					if(resposta == 0){
+						calcularDados();
 						clienteDao.excluir();
 						dispose();
 					}
@@ -319,5 +312,37 @@ public class FrmCliente extends JFrame {
 		btnSair.setToolTipText("Sair");
 		btnSair.setBounds(226, 11, 44, 44);
 		painelBotoes.add(btnSair);
+	}
+	
+	public void calcularDados(){
+		
+		DecimalFormat semCasa = new DecimalFormat("#");
+		DecimalFormat umaCasa = new DecimalFormat("#.#");
+
+		SimpleDateFormat toDate = new SimpleDateFormat("dd/MM/yyyy");
+		SimpleDateFormat toDataBase = new SimpleDateFormat("yyyy-MM-dd 00:00:00.000000");
+		
+		Date usuarioDate = null;
+		String dateBanco = null;
+		
+		try {
+			usuarioDate = toDate.parse((txtDtNasc.getText()));
+			dateBanco = toDataBase.format(usuarioDate);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		cliente.setImc();
+		cliente.setImcDados();
+		setTxtImc(umaCasa.format(cliente.getImc()) + cliente.getImcDados());
+		
+		cliente.setTmb();
+		setTxtTmb(semCasa.format(cliente.getTmb()));
+		
+		cliente.setFcm();
+		setTxtFcm(semCasa.format(cliente.getFcm()));
+		
+		cliente.setDtNasc(dateBanco);
 	}
 }

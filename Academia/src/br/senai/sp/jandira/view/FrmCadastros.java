@@ -38,7 +38,7 @@ public class FrmCadastros extends JFrame {
 
 	public FrmCadastros() {
 		setResizable(false);
-		setIconImage(Toolkit.getDefaultToolkit().getImage(FrmCadastros.class.getResource("/br/senai/sp/jandira/imagens/agenda32.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(FrmCadastros.class.getResource("/br/senai/sp/jandira/imagens/gym32.png")));
 		setTitle("Clientes");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 438, 390);
