@@ -53,8 +53,8 @@ public class FrmCadastros extends JFrame {
 		painelPrincipal.add(painelTitulo);
 		painelTitulo.setLayout(null);
 		
-		JLabel lblTituloTela = new JLabel("Agenda");
-		lblTituloTela.setIcon(new ImageIcon(FrmCadastros.class.getResource("/br/senai/sp/jandira/imagens/agenda32.png")));
+		JLabel lblTituloTela = new JLabel("Boa Forma");
+		lblTituloTela.setIcon(new ImageIcon(FrmCadastros.class.getResource("/br/senai/sp/jandira/imagens/gym32.png")));
 		lblTituloTela.setFont(new Font("Arial", Font.BOLD, 28));
 		lblTituloTela.setBounds(10, 11, 414, 44);
 		painelTitulo.add(lblTituloTela);
@@ -216,6 +216,9 @@ public class FrmCadastros extends JFrame {
 			
 			cliente.setTmb();
 			frmCliente.setTxtTmb(semCasa.format(cliente.getTmb()));
+			
+			cliente.setFcm();
+			frmCliente.setTxtFcm(semCasa.format(cliente.getFcm()));
 			
 			frmCliente.setVisible(true);
 			
