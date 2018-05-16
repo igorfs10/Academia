@@ -50,6 +50,38 @@ public class FrmCliente extends JFrame {
 	private JTextField txtTmb;
 	private Cliente cliente;
 	
+	public void txtIdDisabled(){
+		txtId.setEnabled(false);
+	}
+	
+	public void txtNomeDisabled(){
+		txtNome.setEnabled(false);
+	}
+	
+	public void txtPesoDisabled(){
+		txtPeso.setEnabled(false);
+	}
+	
+	public void txtDtNascDisabled(){
+		txtDtNasc.setEnabled(false);
+	}
+	
+	public void cbNivelAtividadeDisabled(){
+		cbNivelAtividade.setEnabled(false);
+	}
+	
+	public void rdbtnMDisabled(){
+		rdbtnM.setEnabled(false);
+	}
+	
+	public void rdbtnFDisabled(){
+		rdbtnF.setEnabled(false);
+	}
+	
+	public void txtAlturaDisabled(){
+		txtAltura.setEnabled(false);
+	}
+	
 	public void setTxtId(String txtId) {
 		this.txtId.setText(txtId);
 	}
@@ -137,6 +169,7 @@ public class FrmCliente extends JFrame {
 		painelConteudo.add(lblId);
 		
 		txtId = new JTextField();
+		txtId.setEnabled(false);
 		txtId.setEditable(false);
 		txtId.setBounds(58, 22, 46, 20);
 		painelConteudo.add(txtId);
@@ -213,6 +246,7 @@ public class FrmCliente extends JFrame {
 		painelConteudo.add(cbNivelAtividade);
 		
 		txtImc = new JTextArea();
+		txtImc.setEnabled(false);
 		txtImc.setLineWrap(true);
 		txtImc.setWrapStyleWord(true);
 		txtImc.setEditable(false);
@@ -245,12 +279,14 @@ public class FrmCliente extends JFrame {
 		painelConteudo.add(lblCm);
 		
 		txtFcm = new JTextField();
+		txtFcm.setEnabled(false);
 		txtFcm.setEditable(false);
 		txtFcm.setBounds(58, 251, 86, 20);
 		painelConteudo.add(txtFcm);
 		txtFcm.setColumns(10);
 		
 		txtTmb = new JTextField();
+		txtTmb.setEnabled(false);
 		txtTmb.setEditable(false);
 		txtTmb.setBounds(58, 276, 86, 20);
 		painelConteudo.add(txtTmb);

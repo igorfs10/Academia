@@ -182,7 +182,8 @@ public class FrmCadastros extends JFrame {
 		tabelaClientes.setModel(modeloTabela);
 		
 		tabelaClientes.setBackground(SystemColor.info);
-		tabelaClientes.getTableHeader().setReorderingAllowed(false);;
+		tabelaClientes.setGridColor(Color.black);
+		tabelaClientes.getTableHeader().setReorderingAllowed(false);
 		tabelaClientes.getColumnModel().getColumn(0).setPreferredWidth(31);
 		tabelaClientes.getColumnModel().getColumn(1).setPreferredWidth(300);
 		scrollTabela.setViewportView(tabelaClientes);
@@ -227,6 +228,16 @@ public class FrmCadastros extends JFrame {
 			frmCliente.setTxtFcm(semCasa.format(cliente.getFcm()));
 			
 			frmCliente.setVisible(true);
+			
+			if(operacao.equals("EXCLUIR")){
+				frmCliente.txtNomeDisabled();
+				frmCliente.txtPesoDisabled();
+				frmCliente.txtAlturaDisabled();
+				frmCliente.txtDtNascDisabled();
+				frmCliente.cbNivelAtividadeDisabled();
+				frmCliente.rdbtnFDisabled();
+				frmCliente.rdbtnMDisabled();
+			}
 			
 		} catch (Exception erro){
 			JOptionPane.showMessageDialog(null, "Por favor selecione um cliente!", 
