@@ -130,17 +130,17 @@ public class Cliente {
 	public long getIdade(){
 		long idade = 0;
 		Date dataAtual = new Date();
-		SimpleDateFormat toDate = new SimpleDateFormat("dd/MM/yyyy");
+		SimpleDateFormat paraData = new SimpleDateFormat("dd/MM/yyyy");
 		
-		Date usuarioDate = null;
+		Date clienteData = null;
 		
 		try {
-			usuarioDate = toDate.parse(dtNasc);
+			clienteData = paraData.parse(dtNasc);
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		idade = (dataAtual.getTime() - usuarioDate.getTime()) / 1000 / 60 / 60 / 24 / 365;
+		idade = (dataAtual.getTime() - clienteData.getTime()) / 1000 / 60 / 60 / 24 / 365;
 		
 		return idade;
 	}

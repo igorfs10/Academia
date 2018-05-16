@@ -26,6 +26,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.awt.event.ActionEvent;
+import java.awt.SystemColor;
+import javax.swing.border.LineBorder;
 
 public class FrmCadastros extends JFrame {
 
@@ -43,6 +45,7 @@ public class FrmCadastros extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 438, 390);
 		painelPrincipal = new JPanel();
+		painelPrincipal.setBackground(SystemColor.activeCaption);
 		painelPrincipal.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(painelPrincipal);
 		painelPrincipal.setLayout(null);
@@ -69,13 +72,15 @@ public class FrmCadastros extends JFrame {
 		painelTitulo.add(lblData);
 		
 		painelTabela = new JPanel();
-		painelTabela.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Clientes:", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(51, 0, 204)));
-		painelTabela.setBounds(10, 64, 414, 197);
+		painelTabela.setBackground(SystemColor.activeCaption);
+		painelTabela.setBorder(new TitledBorder(new LineBorder(new Color(255, 255, 255)), "Clientes:", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 139)));
+		painelTabela.setBounds(10, 74, 414, 187);
 		painelPrincipal.add(painelTabela);
 		painelTabela.setLayout(null);
 		
 		JPanel painelBotoes = new JPanel();
-		painelBotoes.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		painelBotoes.setBackground(SystemColor.activeCaption);
+		painelBotoes.setBorder(new TitledBorder(new LineBorder(new Color(255, 255, 255)), "", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		painelBotoes.setBounds(10, 272, 414, 66);
 		painelPrincipal.add(painelBotoes);
 		painelBotoes.setLayout(null);
@@ -143,7 +148,7 @@ public class FrmCadastros extends JFrame {
 		
 		// Cria e adiciona um scroll no painel da table
 		scrollTabela = new JScrollPane();
-		scrollTabela.setBounds(10, 32, 394, 154);
+		scrollTabela.setBounds(10, 21, 394, 154);
 		painelTabela.add(scrollTabela);
 		
 		tabelaClientes = new JTable();
@@ -176,6 +181,7 @@ public class FrmCadastros extends JFrame {
 		
 		tabelaClientes.setModel(modeloTabela);
 		
+		tabelaClientes.setBackground(SystemColor.info);
 		tabelaClientes.getTableHeader().setReorderingAllowed(false);;
 		tabelaClientes.getColumnModel().getColumn(0).setPreferredWidth(31);
 		tabelaClientes.getColumnModel().getColumn(1).setPreferredWidth(300);

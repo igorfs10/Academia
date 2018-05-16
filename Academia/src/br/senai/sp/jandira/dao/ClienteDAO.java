@@ -21,7 +21,7 @@ public class ClienteDAO {
 	public void gravar () {
 		
 		String sql = "INSERT INTO clientes "
-				+ "(nome, dtNasc, peso, altura, sexo, niveldeatividade) "
+				+ "(nome, dtnasc, peso, altura, sexo, niveldeatividade) "
 				+ "VALUES (?, ?, ?, ?, ?, ?)";
 		
 		stm = null;

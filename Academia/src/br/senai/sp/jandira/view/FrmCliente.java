@@ -31,6 +31,8 @@ import java.util.Date;
 import java.awt.event.ActionEvent;
 import javax.swing.JFormattedTextField;
 import javax.swing.JRadioButton;
+import javax.swing.border.LineBorder;
+import java.awt.SystemColor;
 
 public class FrmCliente extends JFrame {
 
@@ -100,6 +102,7 @@ public class FrmCliente extends JFrame {
 		setTitle("Dados do Contato");
 		setBounds(100, 100, 318, 478);
 		painelPrincipal = new JPanel();
+		painelPrincipal.setBackground(SystemColor.activeCaption);
 		painelPrincipal.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(painelPrincipal);
 		painelPrincipal.setLayout(null);
@@ -123,7 +126,8 @@ public class FrmCliente extends JFrame {
 		painelTitulo.add(lblOperacao);
 		
 		JPanel painelConteudo = new JPanel();
-		painelConteudo.setBorder(new TitledBorder(null, "Dados:", TitledBorder.LEADING, TitledBorder.TOP, null, Color.BLUE));
+		painelConteudo.setBackground(SystemColor.activeCaption);
+		painelConteudo.setBorder(new TitledBorder(new LineBorder(new Color(255, 255, 255)), "Dados:", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 255)));
 		painelConteudo.setBounds(10, 64, 294, 304);
 		painelPrincipal.add(painelConteudo);
 		painelConteudo.setLayout(null);
@@ -216,6 +220,7 @@ public class FrmCliente extends JFrame {
 		painelConteudo.add(txtImc);
 		
 		rdbtnM = new JRadioButton("M");
+		rdbtnM.setBackground(SystemColor.activeCaption);
 		rdbtnM.setBounds(164, 21, 51, 23);
 		rdbtnM.setActionCommand("M");
 		painelConteudo.add(rdbtnM);
@@ -223,6 +228,7 @@ public class FrmCliente extends JFrame {
 		rdbtnM.setSelected(true);
 		
 		rdbtnF = new JRadioButton("F");
+		rdbtnF.setBackground(SystemColor.activeCaption);
 		rdbtnF.setBounds(217, 21, 46, 23);
 		rdbtnF.setActionCommand("F");
 		painelConteudo.add(rdbtnF);
@@ -251,6 +257,8 @@ public class FrmCliente extends JFrame {
 		txtTmb.setColumns(10);
 		
 		JPanel painelBotoes = new JPanel();
+		painelBotoes.setBorder(new TitledBorder(new LineBorder(new Color(255, 255, 255)), "", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		painelBotoes.setBackground(SystemColor.activeCaption);
 		painelBotoes.setBounds(13, 372, 291, 66);
 		painelPrincipal.add(painelBotoes);
 		painelBotoes.setLayout(null);
