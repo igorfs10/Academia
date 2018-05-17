@@ -17,7 +17,6 @@ import javax.swing.table.DefaultTableModel;
 import br.senai.sp.jandira.dao.ClienteDAO;
 import br.senai.sp.jandira.model.Cliente;
 
-import javax.swing.UIManager;
 import javax.swing.JButton;
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
