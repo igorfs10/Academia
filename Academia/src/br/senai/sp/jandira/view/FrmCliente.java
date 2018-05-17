@@ -18,7 +18,6 @@ import br.senai.sp.jandira.model.Cliente;
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
 import javax.swing.JButton;
-import javax.swing.JScrollPane;
 import java.awt.Toolkit;
 import javax.swing.JComboBox;
 import javax.swing.ButtonGroup;
@@ -132,7 +131,7 @@ public class FrmCliente extends JFrame {
 		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FrmCliente.class.getResource("/br/senai/sp/jandira/imagens/editar32.png")));
 		setTitle("Dados do Contato");
-		setBounds(100, 100, 318, 478);
+		setBounds(100, 100, 318, 461);
 		painelPrincipal = new JPanel();
 		painelPrincipal.setBackground(SystemColor.activeCaption);
 		painelPrincipal.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -160,7 +159,7 @@ public class FrmCliente extends JFrame {
 		JPanel painelConteudo = new JPanel();
 		painelConteudo.setBackground(SystemColor.activeCaption);
 		painelConteudo.setBorder(new TitledBorder(new LineBorder(new Color(255, 255, 255)), "Dados:", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 255)));
-		painelConteudo.setBounds(10, 64, 294, 304);
+		painelConteudo.setBounds(10, 64, 294, 287);
 		painelPrincipal.add(painelConteudo);
 		painelConteudo.setLayout(null);
 		
@@ -237,7 +236,7 @@ public class FrmCliente extends JFrame {
 		painelConteudo.add(lblFcm);
 		
 		JLabel lblTmb = new JLabel("TMB:");
-		lblTmb.setBounds(10, 279, 46, 14);
+		lblTmb.setBounds(145, 254, 46, 14);
 		painelConteudo.add(lblTmb);
 		
 		cbNivelAtividade = new JComboBox();
@@ -281,21 +280,21 @@ public class FrmCliente extends JFrame {
 		txtFcm = new JTextField();
 		txtFcm.setEnabled(false);
 		txtFcm.setEditable(false);
-		txtFcm.setBounds(58, 251, 86, 20);
+		txtFcm.setBounds(58, 251, 77, 20);
 		painelConteudo.add(txtFcm);
 		txtFcm.setColumns(10);
 		
 		txtTmb = new JTextField();
 		txtTmb.setEnabled(false);
 		txtTmb.setEditable(false);
-		txtTmb.setBounds(58, 276, 86, 20);
+		txtTmb.setBounds(187, 251, 86, 20);
 		painelConteudo.add(txtTmb);
 		txtTmb.setColumns(10);
 		
 		JPanel painelBotoes = new JPanel();
 		painelBotoes.setBorder(new TitledBorder(new LineBorder(new Color(255, 255, 255)), "", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		painelBotoes.setBackground(SystemColor.activeCaption);
-		painelBotoes.setBounds(13, 372, 291, 66);
+		painelBotoes.setBounds(12, 358, 290, 66);
 		painelPrincipal.add(painelBotoes);
 		painelBotoes.setLayout(null);
 		
@@ -330,7 +329,6 @@ public class FrmCliente extends JFrame {
 							+ cliente.getNome()
 							+ " ?" , "Atenção", JOptionPane.YES_NO_OPTION);
 					if(resposta == 0){
-						calcularDados();
 						clienteDao.excluir();
 						dispose();
 					}

@@ -43,7 +43,7 @@ public class FrmCadastros extends JFrame {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FrmCadastros.class.getResource("/br/senai/sp/jandira/imagens/gym32.png")));
 		setTitle("Clientes");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 438, 390);
+		setBounds(100, 100, 438, 378);
 		painelPrincipal = new JPanel();
 		painelPrincipal.setBackground(SystemColor.activeCaption);
 		painelPrincipal.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -81,7 +81,7 @@ public class FrmCadastros extends JFrame {
 		JPanel painelBotoes = new JPanel();
 		painelBotoes.setBackground(SystemColor.activeCaption);
 		painelBotoes.setBorder(new TitledBorder(new LineBorder(new Color(255, 255, 255)), "", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		painelBotoes.setBounds(10, 272, 414, 66);
+		painelBotoes.setBounds(12, 272, 410, 66);
 		painelPrincipal.add(painelBotoes);
 		painelBotoes.setLayout(null);
 		
@@ -146,14 +146,12 @@ public class FrmCadastros extends JFrame {
 	
 	public void criarTabela(){
 		
-		// Cria e adiciona um scroll no painel da table
 		scrollTabela = new JScrollPane();
 		scrollTabela.setBounds(10, 21, 394, 154);
 		painelTabela.add(scrollTabela);
 		
 		tabelaClientes = new JTable();
 		
-		// Define o modelo da tabela
 		DefaultTableModel modeloTabela = new DefaultTableModel()
 		{ 
 		      @Override
@@ -165,13 +163,11 @@ public class FrmCadastros extends JFrame {
 		String[] nomesColunas = {"ID", "NOME"};
 		modeloTabela.setColumnIdentifiers(nomesColunas);
 		
-		// Recupera os dados e poe na array para mostrar na tabela
 		ClienteDAO clienteDAO = new ClienteDAO();
 		ArrayList<Cliente> clientes = new ArrayList<>();
 		
 		clientes = clienteDAO.getClientes();
 		
-		// Cria cada linha que ira compor a tabela
 		Object[] linha = new Object[2];
 		for(Cliente cliente : clientes){
 			linha[0] = cliente.getId();
