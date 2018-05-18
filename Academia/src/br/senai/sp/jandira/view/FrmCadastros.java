@@ -34,8 +34,10 @@ public class FrmCadastros extends JFrame {
 	private JTable tabelaClientes;
 	private JScrollPane scrollTabela;
 	private JPanel painelTabela;
+	private DefaultTableModel modeloTabela;
 	private DecimalFormat semCasa = new DecimalFormat("#");
 	private DecimalFormat umaCasa = new DecimalFormat("#.#");
+	private FrmCliente frmCliente;
 
 	public FrmCadastros() {
 		setResizable(false);
@@ -88,8 +90,8 @@ public class FrmCadastros extends JFrame {
 		
 		btnNovo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				FrmCliente cliente = new FrmCliente("NOVO");
-				cliente.setVisible(true);
+				frmCliente = new FrmCliente("NOVO");
+				frmCliente.setCadastros(FrmCadastros.this);
 			}
 		});
 		
@@ -151,7 +153,7 @@ public class FrmCadastros extends JFrame {
 		
 		tabelaClientes = new JTable();
 		
-		DefaultTableModel modeloTabela = new DefaultTableModel()
+		modeloTabela = new DefaultTableModel()
 		{ 
 		      @Override
 		      public boolean isCellEditable(int row, int col) 
@@ -162,18 +164,7 @@ public class FrmCadastros extends JFrame {
 		String[] nomesColunas = {"ID", "NOME"};
 		modeloTabela.setColumnIdentifiers(nomesColunas);
 		
-		ClienteDAO clienteDAO = new ClienteDAO();
-		ArrayList<Cliente> clientes = new ArrayList<>();
-		
-		clientes = clienteDAO.getClientes();
-		
-		Object[] linha = new Object[2];
-		for(Cliente cliente : clientes){
-			linha[0] = cliente.getId();
-			linha[1] = cliente.getNome();
-			modeloTabela.addRow(linha);
-		}
-		
+		gerarClientes();
 		tabelaClientes.setModel(modeloTabela);
 		
 		tabelaClientes.setBackground(SystemColor.info);
@@ -197,7 +188,8 @@ public class FrmCadastros extends JFrame {
 			ClienteDAO clienteDao = new ClienteDAO();
 			Cliente cliente = clienteDao.getCliente(id);
 							
-			FrmCliente frmCliente = new FrmCliente(operacao);
+			frmCliente = new FrmCliente(operacao);
+			frmCliente.setCadastros(FrmCadastros.this);
 			frmCliente.setTxtId(String.valueOf(cliente.getId()));
 			frmCliente.setTxtNome(cliente.getNome());
 			frmCliente.setTxtDtNasc(cliente.getDtNasc());
@@ -221,9 +213,7 @@ public class FrmCadastros extends JFrame {
 			
 			cliente.setFcm();
 			frmCliente.setTxtFcm(semCasa.format(cliente.getFcm()));
-			
-			frmCliente.setVisible(true);
-			
+						
 			if(operacao.equals("EXCLUIR")){
 				frmCliente.txtNomeDisabled();
 				frmCliente.txtPesoDisabled();
@@ -237,6 +227,24 @@ public class FrmCadastros extends JFrame {
 		} catch (Exception erro){
 			JOptionPane.showMessageDialog(null, "Por favor selecione um cliente!", 
 					"Atenção", JOptionPane.WARNING_MESSAGE);
+		}
+	}
+	public void atualizarTabela(){
+		modeloTabela.setRowCount(0);
+		gerarClientes();
+		}	
+	
+	private void gerarClientes(){
+		ClienteDAO clienteDAO = new ClienteDAO();
+		ArrayList<Cliente> clientes = new ArrayList<>();
+		
+		clientes = clienteDAO.getClientes();
+		
+		Object[] linha = new Object[2];
+		for(Cliente cliente : clientes){
+			linha[0] = cliente.getId();
+			linha[1] = cliente.getNome();
+			modeloTabela.addRow(linha);
 		}
 	}
 }

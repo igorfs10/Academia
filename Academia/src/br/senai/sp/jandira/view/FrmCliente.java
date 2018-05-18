@@ -48,6 +48,7 @@ public class FrmCliente extends JFrame {
 	private JTextField txtFcm;
 	private JTextField txtTmb;
 	private Cliente cliente;
+	private FrmCadastros frmCadastros;
 	
 	public void txtIdDisabled(){
 		txtId.setEnabled(false);
@@ -333,6 +334,7 @@ public class FrmCliente extends JFrame {
 						dispose();
 					}
 				}
+				frmCadastros.atualizarTabela();
 			}
 		});
 		if (operacao.equals("EXCLUIR")) {
@@ -386,5 +388,10 @@ public class FrmCliente extends JFrame {
 		setTxtFcm(semCasa.format(cliente.getFcm()));
 		
 		cliente.setDtNasc(dateBanco);
+	}
+	
+	public void setCadastros(FrmCadastros frmCadastros){
+		this.frmCadastros = frmCadastros;
+		setVisible(true);
 	}
 }
