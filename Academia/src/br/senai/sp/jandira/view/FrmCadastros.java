@@ -173,7 +173,7 @@ public class FrmCadastros extends JFrame {
 		tabelaClientes.getColumnModel().getColumn(0).setMinWidth(95);
 		tabelaClientes.getColumnModel().getColumn(0).setResizable(false);
 		tabelaClientes.getColumnModel().getColumn(1).setMinWidth(300);
-		tabelaClientes.getColumnModel().getColumn(0).setResizable(false);
+		tabelaClientes.getColumnModel().getColumn(1).setResizable(false);
 		scrollTabela.setViewportView(tabelaClientes);
 	}
 	
