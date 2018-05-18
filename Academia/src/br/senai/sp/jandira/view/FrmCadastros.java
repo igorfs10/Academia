@@ -171,9 +171,9 @@ public class FrmCadastros extends JFrame {
 		tabelaClientes.setGridColor(Color.black);
 		tabelaClientes.getTableHeader().setReorderingAllowed(false);
 		tabelaClientes.getColumnModel().getColumn(0).setMinWidth(95);
-		tabelaClientes.getColumnModel().getColumn(0).setMaxWidth(95);
+		tabelaClientes.getColumnModel().getColumn(0).setResizable(false);
 		tabelaClientes.getColumnModel().getColumn(1).setMinWidth(300);
-		tabelaClientes.getColumnModel().getColumn(1).setMaxWidth(300);
+		tabelaClientes.getColumnModel().getColumn(0).setResizable(false);
 		scrollTabela.setViewportView(tabelaClientes);
 	}
 	
