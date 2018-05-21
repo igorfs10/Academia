@@ -12,7 +12,7 @@ public class Conexao {
 		
 		try{
 			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-			String dbURL = "jdbc:ucanaccess://C:/Users/17259202/Downloads/academia.accdb";
+			String dbURL = "jdbc:ucanaccess://C:/academia.accdb";
 			con = DriverManager.getConnection(dbURL);
 		} catch (Exception erro){
 			System.out.println(erro.getMessage());
